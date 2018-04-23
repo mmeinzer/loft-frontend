@@ -30,6 +30,14 @@ input[type="text"]:focus {
   border-color: #222;
 }
 
+input.valid:focus {
+  border-color: green;
+}
+
+input.notValid:focus {
+  border-color: red;
+}
+
 .submit {
   width: auto;
   box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.1);

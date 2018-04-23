@@ -1,21 +1,21 @@
-import React, { Component } from 'react';
-import './App.css';
-import firebase from './firebase';
+import React, { Component } from "react";
+import "./App.css";
+import firebase from "./firebase";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      urlToAdd: '',
-      apartments: [],
+      urlToAdd: "",
+      apartments: []
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
-    const aptsRef = firebase.database().ref('apts');
-    aptsRef.on('value', (snapshot) => {
+    const aptsRef = firebase.database().ref("apts");
+    aptsRef.on("value", snapshot => {
       const apts = snapshot.val();
       if (apts) {
         const newState = [];
@@ -25,11 +25,11 @@ class App extends Component {
             url: apts[key].url,
             address: apts[key].address,
             name: apts[key].name,
-            neighborhood: apts[key].neighborhood,
+            neighborhood: apts[key].neighborhood
           });
         }
         this.setState({
-          apartments: newState,
+          apartments: newState
         });
       }
     });
@@ -37,24 +37,26 @@ class App extends Component {
 
   handleChange(e) {
     this.setState({
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   }
+
+  isValidUrl = urlToCheck =>
+    /https?:\/\/www\.apartments\.com\/[\w-]+\/\w+\/?$/.test(urlToCheck);
 
   handleSubmit(e) {
     e.preventDefault();
     const { urlToAdd } = this.state;
-    const urlRe = /https?:\/\/www.apartments.com\/.+\/.+/;
-    if (urlRe.test(urlToAdd)) {
-      const aptsRef = firebase.database().ref('apts');
+    if (this.isValidUrl(urlToAdd)) {
+      const aptsRef = firebase.database().ref("apts");
       aptsRef.push({
         url: urlToAdd,
-        address: '',
-        name: '',
-        neighborhood: '',
+        address: "",
+        name: "",
+        neighborhood: ""
       });
       this.setState({
-        urlToAdd: '',
+        urlToAdd: ""
       });
     }
   }
@@ -63,10 +65,13 @@ class App extends Component {
     return (
       <div className="App">
         <header className="header">
-          <h1 className="title">Welcome to Loft</h1>
+          <h1 className="title">Loft</h1>
         </header>
         <form className="urlSubmit" onSubmit={this.handleSubmit}>
           <input
+            className={
+              this.isValidUrl(this.state.urlToAdd) ? "valid" : "notValid"
+            }
             onChange={this.handleChange}
             value={this.state.urlToAdd}
             type="text"
@@ -76,7 +81,11 @@ class App extends Component {
           <button className="submit">Add Apartment</button>
         </form>
         <div className="apartments">
-          <ul>{this.state.apartments.map(item => <li key={item.id}>{item.url}</li>)}</ul>
+          <ul>
+            {this.state.apartments.map(item => (
+              <li key={item.id}>{item.url}</li>
+            ))}
+          </ul>
         </div>
       </div>
     );
