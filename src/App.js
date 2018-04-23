@@ -42,7 +42,7 @@ class App extends Component {
   }
 
   isValidUrl = urlToCheck =>
-    /https?:\/\/www\.apartments\.com\/[\w-]+\/\w+\/?$/.test(urlToCheck);
+    /https?:\/\/www\.apartments\.com\/[\w-]+\/\w{7}\/?$/.test(urlToCheck);
 
   handleSubmit(e) {
     e.preventDefault();
@@ -65,7 +65,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="header">
-          <h1 className="title">Loft</h1>
+          <h1 className="title">Flat Finder</h1>
         </header>
         <form className="urlSubmit" onSubmit={this.handleSubmit}>
           <input
