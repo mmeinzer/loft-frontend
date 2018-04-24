@@ -3,7 +3,7 @@ import "./App.css";
 import firebase from "./firebase";
 
 import UrlSubmissionForm from "./components/UrlSubmissionForm";
-import ApartmentsList from "./components/ApartmentList";
+import ApartmentsList from "./components/ApartmentsList";
 
 class App extends Component {
   constructor() {
