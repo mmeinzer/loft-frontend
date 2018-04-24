@@ -69,16 +69,16 @@ class App extends Component {
         </header>
         <form className="urlSubmit" onSubmit={this.handleSubmit}>
           <input
-            className={
+            className={`${
               this.isValidUrl(this.state.urlToAdd) ? "valid" : "notValid"
-            }
+            } shadow`}
             onChange={this.handleChange}
             value={this.state.urlToAdd}
             type="text"
             name="urlToAdd"
             placeholder="Enter an apartment URL"
           />
-          <button className="submit">Add Apartment</button>
+          <button className="submitBtn shadow">Enter</button>
         </form>
         <div className="apartments">
           <ul>
