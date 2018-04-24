@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import "./App.css";
 import firebase from "./firebase";
 
+import UrlSubmissionForm from "./components/UrlSubmissionForm";
+
 class App extends Component {
   constructor() {
     super();
@@ -67,19 +69,11 @@ class App extends Component {
         <header className="header">
           <h1 className="title">Flat Finder</h1>
         </header>
-        <form className="urlSubmit" onSubmit={this.handleSubmit}>
-          <input
-            className={`${
-              this.isValidUrl(this.state.urlToAdd) ? "valid" : "notValid"
-            } shadow`}
-            onChange={this.handleChange}
-            value={this.state.urlToAdd}
-            type="text"
-            name="urlToAdd"
-            placeholder="Enter an apartment URL"
-          />
-          <button className="submitBtn shadow">Enter</button>
-        </form>
+        <UrlSubmissionForm
+          handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
+          urlToAdd={this.state.urlToAdd}
+        />
         <div className="apartments">
           <ul>
             {this.state.apartments.map(item => (
