@@ -3,6 +3,7 @@ import "./App.css";
 import firebase from "./firebase";
 
 import UrlSubmissionForm from "./components/UrlSubmissionForm";
+import ApartmentsList from "./components/ApartmentList";
 
 class App extends Component {
   constructor() {
@@ -74,13 +75,7 @@ class App extends Component {
           handleSubmit={this.handleSubmit}
           urlToAdd={this.state.urlToAdd}
         />
-        <div className="apartments">
-          <ul>
-            {this.state.apartments.map(item => (
-              <li key={item.id}>{item.url}</li>
-            ))}
-          </ul>
-        </div>
+        <ApartmentsList apartments={this.state.apartments} />
       </div>
     );
   }
