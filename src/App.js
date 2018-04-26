@@ -49,8 +49,9 @@ class App extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const { urlToAdd } = this.state;
-    if (this.isValidUrl(urlToAdd)) {
+    const { urlToAdd, apartments } = this.state;
+    const urlInDatabase = apartments.map(apt => apt.url).includes(urlToAdd);
+    if (!urlInDatabase && this.isValidUrl(urlToAdd)) {
       const aptsRef = firebase.database().ref("apts");
       aptsRef.push({
         url: urlToAdd,
@@ -74,6 +75,7 @@ class App extends Component {
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
           urlToAdd={this.state.urlToAdd}
+          currentApts={this.state.apartments}
         />
         <ApartmentsList apartments={this.state.apartments} />
       </div>

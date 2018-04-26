@@ -1,14 +1,17 @@
 import React from "react";
 
 const isValidUrl = urlToCheck =>
-  /https?:\/\/www\.apartments\.com\/[\w-]+\/\w{7}\/?$/.test(urlToCheck);
+  /^https?:\/\/www\.apartments\.com\/[\w-]+\/\w{7}\/?$/.test(urlToCheck);
 
 const UrlSubmissionForm = props => {
+  const urlInState = props.currentApts
+    .map(apt => apt.url)
+    .includes(props.urlToAdd);
   return (
     <form className="urlSubmit" onSubmit={props.handleSubmit}>
       <input
         className={`${
-          isValidUrl(props.urlToAdd) ? "valid" : "notValid"
+          !urlInState && isValidUrl(props.urlToAdd) ? "valid" : "notValid"
         } shadow`}
         onChange={props.handleChange}
         value={props.urlToAdd}
