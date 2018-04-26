@@ -23,7 +23,7 @@
 .urlSubmit {
   display: flex;
   justify-content: center;
-  margin: 1em;
+  margin: 0.5em;
 }
 
 input[type="text"] {
