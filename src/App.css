@@ -70,8 +70,3 @@ input.notValid:focus {
 .submitBtn:hover {
   cursor: pointer;
 }
-
-.apartments {
-  display: flex;
-  text-align: left;
-}

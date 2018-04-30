@@ -11,7 +11,7 @@ const ApartmentsList = props => {
                 <a href={item.url} style={nameStyle} target="_blank">
                   {item.name}
                 </a>
-                <div>{item.neighborhood}</div>
+                <div style={neighborhoodStyle}>{item.neighborhood}</div>
                 <div>{item.address}</div>
               </li>
             ) : (
@@ -28,15 +28,28 @@ const ApartmentsList = props => {
 };
 
 const ulStyle = {
-  listStyleType: "none"
+  padding: 0,
+  listStyleType: "none",
+  display: "grid",
+  gridGap: "1.2em",
+  gridTemplateColumns: "repeat(auto-fill, 300px)",
+  justifyContent: "space-evenly"
 };
 
 const liStyle = {
-  display: "grid"
+  display: "grid",
+  border: "1px solid black",
+  padding: ".4em",
+  boxShadow: "0 3px 12px 0 rgba(0, 0, 0, 0.1)"
 };
 
 const nameStyle = {
-  fontSize: "1.5em"
+  fontSize: "1.2em"
+};
+
+const neighborhoodStyle = {
+  color: "#444",
+  fontStyle: "italic"
 };
 
 export default ApartmentsList;
