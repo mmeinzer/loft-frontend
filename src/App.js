@@ -28,7 +28,8 @@ class App extends Component {
             url: apts[key].url,
             address: apts[key].address,
             name: apts[key].name,
-            neighborhood: apts[key].neighborhood
+            neighborhood: apts[key].neighborhood,
+            units: apts[key].units
           });
         }
         this.setState({
