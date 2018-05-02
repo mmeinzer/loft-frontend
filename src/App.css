@@ -70,3 +70,8 @@ input.notValid:focus {
 .submitBtn:hover {
   cursor: pointer;
 }
+
+.apartments {
+  margin: auto;
+  max-width: 1400px;
+}
