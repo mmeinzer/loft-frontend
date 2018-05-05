@@ -1,71 +1,46 @@
 import React from "react";
+import styled from "styled-components";
+import ApartmentCard from "./ApartmentCard";
 
-function isAvailable(unit) {
-  return unit.avail.toLowerCase() === "available now";
-}
+const AptDiv = styled.div`
+  margin: auto;
+  max-width: 1400px;
+`;
+
+const AptList = styled.ul`
+  padding: 0;
+  list-style-type: none;
+  display: grid;
+  grid-gap: 1.2em;
+  grid-template-columns: repeat(auto-fill, 300px);
+  grid-auto-rows: 1fr;
+  justify-content: center;
+  margin-top: 3em;
+`;
 
 const ApartmentsList = props => {
+  const { apartments } = props;
   return (
-    <div className="apartments">
-      <ul style={ulStyle}>
-        {props.apartments.map(
-          (item, i) =>
-            item.name ? (
-              <li key={i} style={liStyle}>
-                <a href={item.url} style={nameStyle} target="_blank">
-                  {item.name}
-                </a>
-                <div style={neighborhoodStyle}>{item.neighborhood}</div>
-                <div>{item.address}</div>
-                <div>
-                  Available Now: {item.units.filter(isAvailable).length}
-                </div>
-                <div>
-                  Lowest Price:{" "}
-                  {item.units.filter(isAvailable).length > 0
-                    ? Math.min(
-                        ...item.units.filter(isAvailable).map(unit => unit.rent)
-                      )
-                    : "No Units"}
-                </div>
-              </li>
-            ) : (
-              <li key={i} style={liStyle}>
-                <a href={item.url} style={nameStyle} target="_blank">
-                  Loading Data
-                </a>
-              </li>
-            )
-        )}
-      </ul>
-    </div>
+    <AptDiv>
+      <AptList>
+        {apartments.map((apt, i) => {
+          if (apt.name) {
+            return (
+              <ApartmentCard
+                url={apt.url}
+                name={apt.name}
+                address={apt.address}
+                neighborhood={apt.neighborhood}
+                units={apt.units}
+              />
+            );
+          } else {
+            return <h1>Loading</h1>;
+          }
+        })}
+      </AptList>
+    </AptDiv>
   );
-};
-
-const ulStyle = {
-  padding: 0,
-  listStyleType: "none",
-  display: "grid",
-  gridGap: "1.2em",
-  gridTemplateColumns: "repeat(auto-fill, 300px)",
-  gridAutoRows: "1fr",
-  justifyContent: "space-evenly"
-};
-
-const liStyle = {
-  display: "grid",
-  border: "1px solid black",
-  padding: ".4em",
-  boxShadow: "0 3px 12px 0 rgba(0, 0, 0, 0.1)"
-};
-
-const nameStyle = {
-  fontSize: "1.2em"
-};
-
-const neighborhoodStyle = {
-  color: "#444",
-  fontStyle: "italic"
 };
 
 export default ApartmentsList;

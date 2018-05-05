@@ -2,76 +2,10 @@
   box-sizing: border-box;
 }
 
-.header {
-  display: flex;
-  justify-content: center;
-  color: #cc0e0e;
-}
-
-.header > h1 {
-  padding: 0.5em;
-  font-size: 4em;
-}
-
-.title {
-  margin: 0;
-  padding: 1em;
-  font-size: 2.5em;
-  font-family: "Gugi";
-}
-
-.urlSubmit {
-  display: flex;
-  justify-content: center;
-  margin: 0.5em;
-}
-
-input[type="text"] {
-  font-size: 1.75em;
-  padding: 0.2em;
-  border: 2px solid #888;
-  border-radius: 0.25em;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
-input[type="text"]:focus {
-  outline: none;
-  border-color: #888;
-}
-
 input.valid:focus {
   border-color: green;
 }
 
 input.notValid:focus {
   border-color: red;
-}
-
-.shadow {
-  box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.1);
-}
-
-.submitBtn {
-  outline: none;
-  width: auto;
-  font-weight: bold;
-  padding: 0.2em 0.6em;
-  border: 2px solid #888;
-  border-left: 0;
-  border-radius: 0.25em;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  background: gray;
-  font-size: 1em;
-  color: #fff;
-}
-
-.submitBtn:hover {
-  cursor: pointer;
-}
-
-.apartments {
-  margin: auto;
-  max-width: 1400px;
 }
