@@ -2,19 +2,15 @@ import React, { Component } from "react";
 import "./App.css";
 import firebase from "./firebase";
 
+import Header from "./components/Header";
 import UrlSubmissionForm from "./components/UrlSubmissionForm";
 import ApartmentsList from "./components/ApartmentsList";
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      urlToAdd: "",
-      apartments: []
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+  state = {
+    urlToAdd: "",
+    apartments: []
+  };
 
   componentDidMount() {
     const aptsRef = firebase.database().ref("clientData");
@@ -39,16 +35,16 @@ class App extends Component {
     });
   }
 
-  handleChange(e) {
+  handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
-  }
+  };
 
   isValidUrl = urlToCheck =>
     /https?:\/\/www\.apartments\.com\/[\w-]+\/\w{7}\/?$/.test(urlToCheck);
 
-  handleSubmit(e) {
+  handleSubmit = e => {
     e.preventDefault();
     const { urlToAdd, apartments } = this.state;
     const urlInDatabase = apartments.map(apt => apt.url).includes(urlToAdd);
@@ -64,14 +60,12 @@ class App extends Component {
         urlToAdd: ""
       });
     }
-  }
+  };
 
   render() {
     return (
       <div className="App">
-        <header className="header">
-          <h1 className="title">Flat Finder</h1>
-        </header>
+        <Header />
         <UrlSubmissionForm
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
