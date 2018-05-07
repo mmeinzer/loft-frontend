@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import firebase from "./firebase";
+import { database } from "./firebase";
 
 import Header from "./components/Header";
 import UrlSubmissionForm from "./components/UrlSubmissionForm";
@@ -13,7 +13,7 @@ class App extends Component {
   };
 
   componentDidMount() {
-    const aptsRef = firebase.database().ref("clientData");
+    const aptsRef = database.ref("clientData");
     aptsRef.on("value", snapshot => {
       const apts = snapshot.val();
       if (apts) {
@@ -49,7 +49,7 @@ class App extends Component {
     const { urlToAdd, apartments } = this.state;
     const urlInDatabase = apartments.map(apt => apt.url).includes(urlToAdd);
     if (!urlInDatabase && this.isValidUrl(urlToAdd)) {
-      const aptsRef = firebase.database().ref("clientData");
+      const aptsRef = database.ref("clientData");
       aptsRef.push({
         url: urlToAdd,
         address: "",
