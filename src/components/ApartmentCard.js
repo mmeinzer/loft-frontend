@@ -4,7 +4,7 @@ import { formatRent } from "../utils";
 
 const ApartmentItem = styled.li`
   display: grid;
-  border: 1px solid black;
+  border: 1px solid #d6d6d6;
   padding: 0.4em;
   box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.1);
   > h2 {
@@ -18,7 +18,6 @@ function isAvailable(unit) {
 }
 
 const ApartmentCard = props => {
-  console.log(props);
   const { url, name, address, neighborhood, units } = props;
   return (
     <ApartmentItem>
@@ -35,6 +34,7 @@ const ApartmentCard = props => {
           : "No Units"}
       </div>
       <a href={url}>Details</a>
+      <button>Remove</button>
       <pre>
         <code>{JSON.stringify(units[0], null, 4)}</code>
       </pre>

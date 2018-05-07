@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Wrapper = styled.header`
   display: flex;
-  justify-content: center;
+  justify-content: center;  
   color: #111;
   > h1 {
     padding: 0.5em;
