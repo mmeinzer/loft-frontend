@@ -16,7 +16,7 @@ const Wrapper = styled.header`
 
 const Header = () => (
   <Wrapper>
-    <h1>Flat Finder</h1>
+    <h1>Flat Stack</h1>
   </Wrapper>
 );
 
