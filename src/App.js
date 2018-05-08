@@ -63,6 +63,8 @@ class App extends Component {
   };
 
   removeApartment = function(e){
+    const aptsRef = database.ref("clientData")
+    aptsRef.child(this.id).set({})
   }
 
   render() {

@@ -47,7 +47,8 @@ const ApartmentCard = props => {
           address = "-",
           neighborhood= "-",
           units = [],
-          removeApartment 
+          removeApartment,
+          id
         } = props;
   return (
     <ApartmentItem>
@@ -57,7 +58,7 @@ const ApartmentCard = props => {
       <Availability units={units} />
       <LowPrice units={units} />
       <a href={url}>Details</a>
-      <button onClick={removeApartment.bind({url})}>Remove</button>
+      <button onClick={removeApartment.bind({id})}>Remove</button>
     </ApartmentItem>
   );
 };
