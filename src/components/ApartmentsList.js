@@ -19,24 +19,23 @@ const AptList = styled.ul`
 `;
 
 const ApartmentsList = props => {
-  const { apartments } = props;
+  const { apartments, removeApartment } = props;
   return (
     <AptDiv>
       <AptList>
         {apartments.map((apt, i) => {
-          if (apt.name) {
             return (
               <ApartmentCard
+                key={apt.id}
+                id={apt.id}
                 url={apt.url}
-                name={apt.name}
-                address={apt.address}
-                neighborhood={apt.neighborhood}
+                name={apt.name || undefined}
+                address={apt.address || undefined}
+                neighborhood={apt.neighborhood || undefined}
                 units={apt.units}
+                removeApartment={removeApartment}
               />
             );
-          } else {
-            return <h1>Loading</h1>;
-          }
         })}
       </AptList>
     </AptDiv>

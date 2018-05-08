@@ -49,7 +49,6 @@ const ApartmentCard = props => {
           units = [],
           removeApartment 
         } = props;
-  console.log(units)
   return (
     <ApartmentItem>
       <h2>{name}</h2>

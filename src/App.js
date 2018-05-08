@@ -62,6 +62,9 @@ class App extends Component {
     }
   };
 
+  removeApartment = function(e){
+  }
+
   render() {
     return (
       <div className="App">
@@ -72,7 +75,7 @@ class App extends Component {
           urlToAdd={this.state.urlToAdd}
           currentApts={this.state.apartments}
         />
-        <ApartmentsList apartments={this.state.apartments} />
+        <ApartmentsList apartments={this.state.apartments} removeApartment={this.removeApartment} />
       </div>
     );
   }
