@@ -11,33 +11,54 @@ const ApartmentItem = styled.li`
     font-size: 1em;
     margin: 0;
   }
+  > a {
+    color: #999;
+  }
 `;
 
 function isAvailable(unit) {
   return unit.avail.toLowerCase() === "available now";
 }
 
+const Availability = (props) => {
+  const { units } = props;
+  const count = units.length === 0
+                  ? ''
+                  : units.filter(isAvailable).length
+  return <div>Available Now: {count}</div>
+}
+
+const LowPrice = (props) => {
+  const availableUnits = props.units.filter(isAvailable);
+  let price;
+  if (availableUnits.length > 0) {
+    price = formatRent(
+        Math.min(...availableUnits.map(unit => unit.rent))
+      )
+  } else {
+    price = ''
+  }
+  return <div>From: {price}</div>
+}
+
 const ApartmentCard = props => {
-  const { url, name, address, neighborhood, units } = props;
+  const { url = "", 
+          name = "Loading", 
+          address = "-",
+          neighborhood= "-",
+          units = [],
+          removeApartment 
+        } = props;
+  console.log(units)
   return (
     <ApartmentItem>
       <h2>{name}</h2>
       <div>{neighborhood}</div>
       <div>{address}</div>
-      <div>Available Now: {units.filter(isAvailable).length}</div>
-      <div>
-        Lowest Price:{" "}
-        {units.filter(isAvailable).length > 0
-          ? formatRent(
-              Math.min(...units.filter(isAvailable).map(unit => unit.rent))
-            )
-          : "No Units"}
-      </div>
+      <Availability units={units} />
+      <LowPrice units={units} />
       <a href={url}>Details</a>
-      <button>Remove</button>
-      <pre>
-        <code>{JSON.stringify(units[0], null, 4)}</code>
-      </pre>
+      <button onClick={removeApartment.bind({url})}>Remove</button>
     </ApartmentItem>
   );
 };
