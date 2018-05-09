@@ -5,8 +5,11 @@ import { formatRent } from "../utils";
 const ApartmentItem = styled.li`
   display: grid;
   border: 1px solid #d6d6d6;
-  padding: 0.4em;
+  padding: .6em;
   box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.1);
+  > * {
+    padding: .2em;
+  }
   > h2 {
     font-size: 1em;
     margin: 0;
@@ -58,7 +61,7 @@ const ApartmentCard = props => {
       <Availability units={units} />
       <LowPrice units={units} />
       <a href={url}>Details</a>
-      <button onClick={removeApartment.bind({id})}>Remove</button>
+      <button onClick={() => removeApartment(id)}>Remove</button>
     </ApartmentItem>
   );
 };
