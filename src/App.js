@@ -12,9 +12,10 @@ class App extends Component {
     apartments: []
   };
 
+  aptsRef = database.ref('clientData')
+
   componentDidMount() {
-    const aptsRef = database.ref("clientData");
-    aptsRef.on("value", snapshot => {
+    this.aptsRef.on("value", snapshot => {
       const apts = snapshot.val();
       if (apts) {
         const newState = [];
@@ -49,8 +50,7 @@ class App extends Component {
     const { urlToAdd, apartments } = this.state;
     const urlInDatabase = apartments.map(apt => apt.url).includes(urlToAdd);
     if (!urlInDatabase && this.isValidUrl(urlToAdd)) {
-      const aptsRef = database.ref("clientData");
-      aptsRef.push({
+      this.aptsRef.push({
         url: urlToAdd,
         address: "",
         name: "",
@@ -62,9 +62,8 @@ class App extends Component {
     }
   };
 
-  removeApartment = function(e){
-    const aptsRef = database.ref("clientData")
-    aptsRef.child(this.id).set({})
+  removeApartment = (id) => {
+    this.aptsRef.child(id).set({})
   }
 
   render() {
