@@ -5,13 +5,14 @@ const shadow = "box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.1)";
 
 const UrlForm = styled.form`
   display: flex;
+  flex-flow: row wrap;
   justify-content: center;
   margin: 0.5em;
 `;
 
 const UrlInput = styled.input`
   ${shadow};
-  font-size: 1.75em;
+  font-size: 1.2em;
   padding: 0.2em;
   border: 2px solid #888;
   border-radius: 0.25em;
