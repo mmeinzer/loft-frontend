@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import ApartmentCard from "./ApartmentCard";
 
-const AptDiv = styled.div`
-  margin: auto;
+const AptDiv = styled.div`  
+  margin-top: 3em;
   max-width: 1400px;
 `;
 
@@ -15,7 +15,7 @@ const AptList = styled.ul`
   grid-template-columns: repeat(auto-fill, 300px);
   grid-auto-rows: 1fr;
   justify-content: center;
-  margin-top: 3em;
+  margin: 0;
 `;
 
 const ApartmentsList = props => {
