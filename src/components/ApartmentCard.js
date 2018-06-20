@@ -14,7 +14,7 @@ const ApartmentItem = styled.li`
     font-size: 1em;
     margin: 0;
   }
-  > a {
+  a.details {
     color: #999;
   }
 `;
@@ -60,7 +60,7 @@ const ApartmentCard = props => {
       <div>{address}</div>
       <Availability units={units} />
       <LowPrice units={units} />
-      <a href={url}>Details</a>
+      <div><a href={url} className='details'>Details</a></div>
       <button onClick={() => removeApartment(id)}>Remove</button>
     </ApartmentItem>
   );
