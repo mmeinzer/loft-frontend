@@ -42,6 +42,11 @@ const Submit = styled.button`
   }
 `;
 
+const Message = styled.div`
+  text-align: center;
+  height: 10px;
+`
+
 const isValidUrl = urlToCheck =>
   /^https?:\/\/www\.apartments\.com\/[\w-]+\/\w{7}\/?$/.test(urlToCheck);
 
@@ -50,19 +55,22 @@ const UrlSubmissionForm = props => {
     .map(apt => apt.url)
     .includes(props.urlToAdd);
   return (
-    <UrlForm onSubmit={props.handleSubmit}>
-      <UrlInput
-        className={
-          !urlInState && isValidUrl(props.urlToAdd) ? "valid" : "notValid"
-        }
-        onChange={props.handleChange}
-        value={props.urlToAdd}
-        type="text"
-        name="urlToAdd"
-        placeholder="Enter an apartment URL"
-      />
-      <Submit>Enter</Submit>
-    </UrlForm>
+    <div>
+      <Message>{urlInState ? "You've already entered that URL" : ""}</Message>
+      <UrlForm onSubmit={props.handleSubmit}>
+        <UrlInput
+          className={
+            !urlInState && isValidUrl(props.urlToAdd) ? "valid" : "notValid"
+          }
+          onChange={props.handleChange}
+          value={props.urlToAdd}
+          type="text"
+          name="urlToAdd"
+          placeholder="Enter an apartment URL"
+        />
+        <Submit>Enter</Submit>
+      </UrlForm>
+    </div>
   );
 };
 
