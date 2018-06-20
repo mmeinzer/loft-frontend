@@ -2,7 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import ApartmentCard from "./ApartmentCard";
 
-const AptDiv = styled.div`  
+const AptDiv = styled.div`
+  margin: auto;  
   margin-top: 3em;
   max-width: 1400px;
 `;
