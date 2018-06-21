@@ -20,13 +20,14 @@ const AptList = styled.ul`
 `;
 
 const ApartmentsList = props => {
-  const { apartments, removeApartment } = props;
+  const { apartments, removeApartment, showUnits } = props;
   return (
     <AptDiv>
       <AptList>
         {apartments.map((apt, i) => {
             return (
               <ApartmentCard
+                index={i}
                 key={apt.id}
                 id={apt.id}
                 url={apt.url}
@@ -35,6 +36,7 @@ const ApartmentsList = props => {
                 neighborhood={apt.neighborhood || undefined}
                 units={apt.units}
                 removeApartment={removeApartment}
+                showUnits={showUnits}
               />
             );
         })}

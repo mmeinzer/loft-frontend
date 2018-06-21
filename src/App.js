@@ -5,11 +5,13 @@ import { database } from "./firebase";
 import Header from "./components/Header";
 import UrlSubmissionForm from "./components/UrlSubmissionForm";
 import ApartmentsList from "./components/ApartmentsList";
+import UnitDetails from "./components/UnitDetails";
 
 class App extends Component {
   state = {
     urlToAdd: "",
-    apartments: []
+    apartments: [],
+    unitsIndex: -1,
   };
 
   aptsRef = database.ref('clientData')
@@ -66,6 +68,14 @@ class App extends Component {
     this.aptsRef.child(id).set({})
   }
 
+  showUnits = (index) => {
+    this.setState({unitsIndex: index})
+  }
+
+  hideUnits = () => {
+    this.setState({unitsIndex: -1})
+  }
+
   render() {
     return (
       <div className="App">
@@ -76,7 +86,15 @@ class App extends Component {
           urlToAdd={this.state.urlToAdd}
           currentApts={this.state.apartments}
         />
-        <ApartmentsList apartments={this.state.apartments} removeApartment={this.removeApartment} />
+        <ApartmentsList 
+          apartments={this.state.apartments}
+          removeApartment={this.removeApartment}
+          showUnits={this.showUnits}
+        />
+        <UnitDetails
+          units={this.state.unitsIndex + 1 ? this.state.apartments[this.state.unitsIndex].units : null}
+          hideUnits={this.hideUnits}
+        />
       </div>
     );
   }

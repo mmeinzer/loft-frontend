@@ -51,7 +51,9 @@ const ApartmentCard = props => {
           neighborhood= "-",
           units = [],
           removeApartment,
-          id
+          showUnits,
+          id,
+          index
         } = props;
   return (
     <ApartmentItem>
@@ -61,6 +63,7 @@ const ApartmentCard = props => {
       <Availability units={units} />
       <LowPrice units={units} />
       <div><a href={url} className='details'>Details</a></div>
+      <button onClick={() => showUnits(index)}>Units</button>
       <button onClick={() => removeApartment(id)}>Remove</button>
     </ApartmentItem>
   );
