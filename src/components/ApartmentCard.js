@@ -6,7 +6,9 @@ const ApartmentItem = styled.li`
   display: grid;
   border: 1px solid #d6d6d6;
   padding: .6em;
-  box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: ${props => props.highlight
+    ?'0 6px 24px 0 rgba(0, 0, 0, 0.1)'
+    :'0 3px 12px 0 rgba(0, 0, 0, 0.1)'};
   > * {
     padding: .2em;
   }
@@ -53,10 +55,11 @@ const ApartmentCard = props => {
           removeApartment,
           showUnits,
           id,
-          index
+          index,
+          unitsIndex,
         } = props;
   return (
-    <ApartmentItem>
+    <ApartmentItem highlight={index == unitsIndex}>
       <h2>{name}</h2>
       <div>{neighborhood}</div>
       <div>{address}</div>

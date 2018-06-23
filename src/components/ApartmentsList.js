@@ -20,7 +20,7 @@ const AptList = styled.ul`
 `;
 
 const ApartmentsList = props => {
-  const { apartments, removeApartment, showUnits } = props;
+  const { apartments, removeApartment, showUnits, unitsIndex } = props;
   return (
     <AptDiv>
       <AptList>
@@ -37,6 +37,7 @@ const ApartmentsList = props => {
                 units={apt.units}
                 removeApartment={removeApartment}
                 showUnits={showUnits}
+                unitsIndex={unitsIndex}
               />
             );
         })}
