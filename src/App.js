@@ -69,7 +69,11 @@ class App extends Component {
   }
 
   showUnits = (index) => {
-    this.setState({unitsIndex: index})
+    if (this.state.unitsIndex !== index) {
+      this.setState({unitsIndex: index});
+    } else {
+      this.hideUnits();
+    }
   }
 
   hideUnits = () => {
@@ -90,6 +94,7 @@ class App extends Component {
           apartments={this.state.apartments}
           removeApartment={this.removeApartment}
           showUnits={this.showUnits}
+          unitsIndex={this.state.unitsIndex}
         />
         <UnitDetails
           units={this.state.unitsIndex + 1 ? this.state.apartments[this.state.unitsIndex].units : null}
